@@ -2,6 +2,11 @@ article.tweet {
   margin-top: 1em;
   border-radius: 5px;
   border: 1px solid #ddd;
+  overflow: hidden;
+}
+
+article.tweet:hover {
+  border: 1px solid #676767;
 }
 
 article .tweet-header {
@@ -31,14 +36,24 @@ article .tweet-author-thumb-container {
   display:flex;
   flex:1;
 }
-
-article .tweet-author-thumb {
+article .tweet-author-thumb-frame {
   height:75px;
   width:75px;
   background:#ccc;
   border-radius: 5px;
   border:1px solid #ddd;
   margin-right:16px;
+  overflow:hidden;
+}
+
+article .tweet-author-thumb-frame:hover {
+  filter:grayscale(100);
+  animation-duration: 1s;
+}
+
+article .tweet-author-thumb {
+  width:100%;
+  height:100%;
 }
 
 article .tweet-author-name {
@@ -49,6 +64,10 @@ article .tweet-author-name {
   margin-top:1.25em;
 }
 
+article .tweet-author-name:hover {
+  color:#00a087;
+}
+
 article .tweet-author-username {
   display:flex;
   flex:1;
@@ -57,6 +76,10 @@ article .tweet-author-username {
   font-weight: 300;
   letter-spacing: 1px;
   margin-top:2.25em;
+}
+
+article .tweet-author-username:hover {
+  color:#00a087;
 }
 
 article .tweet-content {
