@@ -1,0 +1,1 @@
+console.log('Counter ready to go');

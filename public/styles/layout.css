@@ -10,10 +10,6 @@ html {
   box-sizing: inherit;
 }
 
-/*
- * Global layout stuff
- */
-
 body {
   margin: 0;
   color: #244751;
@@ -27,6 +23,3 @@ main {
   background:#fff;
   padding:2em;
 }
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
