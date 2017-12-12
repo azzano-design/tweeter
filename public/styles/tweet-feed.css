@@ -21,6 +21,7 @@ article .tweet-header {
   border-bottom:1px solid #ddd;
   padding: 8px;
   display:flex;
+  align-items: center;
   flex-direction: row;
   position: relative;
 }
@@ -60,8 +61,8 @@ article .tweet-author-name {
   display:flex;
   flex:2;
   font-weight: 700;
+  margin:0px;
   font-size: 1.25em;
-  margin-top:1.25em;
 }
 
 article .tweet-author-name:hover {
@@ -75,7 +76,7 @@ article .tweet-author-username {
   font-size:0.8em;
   font-weight: 300;
   letter-spacing: 1px;
-  margin-top:2.25em;
+  justify-content: flex-end;
 }
 
 article .tweet-author-username:hover {
