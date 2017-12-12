@@ -1,4 +1,10 @@
-.new-tweet {
+article.tweet {
+  margin-top: 1em;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+article .tweet-header {
   background: rgba(255,255,255,1);
   background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
@@ -9,40 +15,63 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
   border-bottom:1px solid #ddd;
   padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  display:flex;
+  flex-direction: row;
+  position: relative;
 }
 
-.new-tweet h2 {
+article .tweet-header:after {
+  content: " ";
   display: block;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  height: 0;
+  clear: both;
 }
 
-.new-tweet textarea {
-  padding:5px;
-  margin-bottom:16px;
-  display:block;
-  width:100%;
-  color: #666;
+article .tweet-author-thumb-container {
+  display:flex;
+  flex:1;
+}
+
+article .tweet-author-thumb {
+  height:75px;
+  width:75px;
+  background:#ccc;
+  border-radius: 5px;
+  border:1px solid #ddd;
+  margin-right:16px;
+}
+
+article .tweet-author-name {
+  display:flex;
+  flex:2;
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-top:1.25em;
+}
+
+article .tweet-author-username {
+  display:flex;
+  flex:1;
+  color:#a9a9a9;
+  font-size:0.8em;
   font-weight: 300;
+  letter-spacing: 1px;
+  margin-top:2.25em;
 }
 
-.new-tweet input[type="submit"] {
-  border-radius: 0px;
-  color: #e8fdff;
-  background: #00a087;
-  border: 0px;
-  padding: 10px 15px 10px 15px;
+article .tweet-content {
+  clear:both;
+  padding:12px;
+  color:#666;
 }
 
-.new-tweet .counter {
-  float:right;
-  margin-top:10px;
-  color:#000;
+article .tweet-footer {
+  border-top:1px solid #ddd;
+  padding:8px;
+}
+
+article .tweet-date {
+  font-size:0.75em;
   font-weight: 300;
-}
-
-.counter.invalid {
-  color:#e66363;
+  color:#b9b9b9;
 }
