@@ -21,4 +21,9 @@
 .new-tweet .counter {
   float:right;
   margin-top:3px;
+  color:#000;
+}
+
+.counter.invalid {
+  color:#ff0000;
 }
