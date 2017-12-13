@@ -3,10 +3,17 @@ article.tweet {
   border-radius: 5px;
   border: 1px solid #ddd;
   overflow: hidden;
+  transform: scale(1.0);
+  animation-duration: 2s;
 }
 
 article.tweet:hover {
-  border: 1px solid #676767;
+  border: 1px solid #cacaca;
+  -webkit-box-shadow: 1px 1px 10px 5px rgba(0,0,0,0.13);
+  -moz-box-shadow: 1px 1px 10px 5px rgba(0,0,0,0.13);
+  box-shadow: 1px 1px 10px 5px rgba(0,0,0,0.13);
+  transform: scale(1.03);
+  animation-duration: 2s;
 }
 
 article .tweet-header {
