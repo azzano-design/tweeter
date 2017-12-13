@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
   $('.new-tweet').on('keyup', 'textarea', function() {
     var charCount = +$(this).val().length;
     if (charCount > 140) {
