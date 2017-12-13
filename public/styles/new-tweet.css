@@ -18,6 +18,12 @@
   margin-top: 5px;
   margin-bottom: 10px;
 }
+.warnings {
+  font-weight: 300;
+  color: #e66363;
+  margin-bottom: 5px;
+  display: block;
+}
 
 .new-tweet textarea {
   padding:5px;

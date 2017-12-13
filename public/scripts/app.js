@@ -6,11 +6,6 @@
 
 $(function () {
 
-  function validateTweetSubmission () {
-
-
-  }
-
   $('#writeTweet').on('submit', function (submitEvent) {
     // prevent default
     submitEvent.preventDefault();
@@ -18,9 +13,9 @@ $(function () {
     var textArea = $('.new-tweet textarea').val().length
 
     if (textArea === null || textArea === 0 || textArea === undefined) {
-      console.log('nope, suck it');
+      $('.warnings').text('Please enter a tweet');
     } else if (textArea > 140) {
-      console.log('Im sure you think its important but your tweet needs to be shorter than 140 characters')
+      $('.warnings').text('Your tweet is too long');
     } else {
       // submit form with Ajax
       $.ajax({
