@@ -2,15 +2,30 @@
 
 // Basic express setup:
 
-const PORT          = 8080;
-const express       = require("express");
-const bodyParser    = require("body-parser");
-const app           = express();
-const morgan        = require('morgan');
+const PORT            = 8080;
+const express         = require("express");
+const sassMiddleware  = require('node-sass-middleware');
+const bodyParser      = require("body-parser");
+const path            = require('path');
 
+var srcPath = __dirname;
+var destPath = __dirname + '/../public/styles/';
+
+const app             = express();
+const morgan          = require('morgan');
+
+// Use SassMiddleware for Sass requests
+app.use('/styles', sassMiddleware({
+  src: srcPath,
+  dest: destPath,
+  debug: true,
+  outputStyle: 'expanded'
+}));
+
+// Otherwise, fetch from public
+app.use(express.static('./public'));
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
 
 // Use MongoDB instead of in-memory
 const db = require("mongodb").MongoClient;
