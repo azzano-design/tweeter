@@ -12,11 +12,9 @@ app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// The in-memory database of tweets. It's a basic object with an array in it.
-
+// Use MongoDB instead of in-memory
 const db = require("mongodb").MongoClient;
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
-
 
 db.connect(MONGODB_URI, (err, db) => {
   if (err) {
@@ -25,15 +23,12 @@ db.connect(MONGODB_URI, (err, db) => {
   }
   console.error(`Connected Successfully: ${MONGODB_URI}`);
 
+  const DataHelpers = require("./lib/data-helpers.js")(db);
+  const tweetsRoutes = require("./routes/tweets")(DataHelpers);
 
-const DataHelpers = require("./lib/data-helpers.js")(db);
-
-const tweetsRoutes = require("./routes/tweets")(DataHelpers);
-
-// Mount the tweets routes at the "/tweets" path prefix:
-app.use("/tweets", tweetsRoutes);
-
-app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
-});
+  // Mount the tweets routes at the "/tweets" path prefix:
+  app.use("/tweets", tweetsRoutes);
+  app.listen(PORT, () => {
+    console.log("Tweeter listening on port " + PORT);
+  });
 });

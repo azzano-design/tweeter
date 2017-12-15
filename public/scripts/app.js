@@ -1,49 +1,37 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
-
 $(function () {
 
   $('#writeTweet').on('submit', function (submitEvent) {
-    // prevent default
     submitEvent.preventDefault();
-
     var textArea = $('.new-tweet textarea').val().length
-
-    // if (textArea === null || textArea === 0 || textArea === undefined) {
-    //   console.log('nope, suck it');
-    // } else if (textArea > 140) {
-    //   console.log('Im sure you think its important but your tweet needs to be shorter than 140 characters')
-    // } else {
-    //   // submit form with Ajax
+    if (textArea === null || textArea === 0 || textArea === undefined) {
+      console.log('nope, suck it');
+    } else if (textArea > 140) {
+      console.log('Im sure you think its important but your tweet needs to be shorter than 140 characters')
+    } else {
       $.ajax({
         method: 'POST',
         url: '/tweets',
         // sends the content of the form to the server
         data: $(this).serialize()
       }).done(function (data) {
-         // reset the form
-          submitEvent.target.reset();
-          loadTweets();
+        // reset the form
+        submitEvent.target.reset();
+        loadTweets();
       });
-    // }
+    }
   })
 
   function loadTweets() {
     $.ajax({
       method: 'GET',
       url: '/tweets'
-      }).done(renderTweets);
-    }
+    }).done(renderTweets);
+  }
 
   var renderTweets = (tweets) => {
-    $('#tweets').empty();
-    tweets.forEach((tweet) => {
-      let $tweet = createTweetElement(tweet);
-      $('#tweetFeed').append($tweet);
-    });
+    let tweetsHtml = tweets.map(createTweetElement)
+    tweetsHtml.reverse()
+    $('#tweetFeed').prepend(tweetsHtml)
   }
 
   loadTweets();
