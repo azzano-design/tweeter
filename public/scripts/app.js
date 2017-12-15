@@ -6,23 +6,18 @@
 
 $(function () {
 
-  function validateTweetSubmission () {
-
-
-  }
-
   $('#writeTweet').on('submit', function (submitEvent) {
     // prevent default
     submitEvent.preventDefault();
 
     var textArea = $('.new-tweet textarea').val().length
 
-    if (textArea === null || textArea === 0 || textArea === undefined) {
-      console.log('nope, suck it');
-    } else if (textArea > 140) {
-      console.log('Im sure you think its important but your tweet needs to be shorter than 140 characters')
-    } else {
-      // submit form with Ajax
+    // if (textArea === null || textArea === 0 || textArea === undefined) {
+    //   console.log('nope, suck it');
+    // } else if (textArea > 140) {
+    //   console.log('Im sure you think its important but your tweet needs to be shorter than 140 characters')
+    // } else {
+    //   // submit form with Ajax
       $.ajax({
         method: 'POST',
         url: '/tweets',
@@ -33,18 +28,22 @@ $(function () {
           submitEvent.target.reset();
           loadTweets();
       });
-    }
+    // }
   })
 
   function loadTweets() {
     $.ajax({
       method: 'GET',
       url: '/tweets'
-    }).done(renderTweets);
-  }
+      }).done(renderTweets);
+    }
 
-  function renderTweets(tweets) {
-    $('#tweetFeed').append().html(tweets.map(createTweetElement).reverse());
+  var renderTweets = (tweets) => {
+    $('#tweets').empty();
+    tweets.forEach((tweet) => {
+      let $tweet = createTweetElement(tweet);
+      $('#tweetFeed').append($tweet);
+    });
   }
 
   loadTweets();
@@ -54,7 +53,7 @@ $(function () {
     var $tweetHeader = $('<header>').addClass('tweet-header');
     var $tweetAuthorThumb = $('<div>').addClass('tweet-author-thumb-container');
     var $tweetAuthorThumbFrame = $('<div>').addClass('tweet-author-thumb-frame');
-    var $tweetAuthorThumbImg = $('<img>').addClass('tweet-author-thumb').attr("src", tweet.user.avatars.large);
+    var $tweetAuthorThumbImg = $('<img>').addClass('tweet-author-thumb').attr("src", tweet.user.avatars.regular);
     var $tweetAuthorName = $('<h4>').addClass('tweet-author-name').text(tweet.user.name);
     var $tweetAuthorUsername = $('<span>').addClass('tweet-author-username').text(tweet.user.handle);
     // append it all to their parents, then append to header
