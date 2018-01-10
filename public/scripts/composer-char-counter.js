@@ -1,11 +1,14 @@
 $(function() {
   $('.new-tweet').on('keyup', 'textarea', function() {
     var charCount = +$(this).val().length;
-    if (charCount > 140) {
+    $('.counter').text(140 - charCount);
+    if (140 - charCount < 0) {
       $('.counter').addClass('invalid');
-    } else {
+    } else if (140 - charCount === 0 ) {
+      $('.counter').addClass('invalid');
+    }
+    else {
       $('.counter').removeClass('invalid');
     }
-    $('.counter').text(charCount);
    });
 });

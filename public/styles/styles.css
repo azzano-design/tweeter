@@ -145,6 +145,10 @@ article.tweet:hover {
   animation-duration: 2s;
 }
 
+article.tweet:hover > .tweet-footer .tweet-actions {
+  display: block;
+}
+
 article .tweet-header {
   background: white;
   background: -moz-linear-gradient(left, white 0%, #f6f6f6 47%, #ededed 100%);
@@ -235,4 +239,14 @@ article .tweet-date {
   font-size: 0.75em;
   font-weight: 300;
   color: #b9b9b9;
+}
+
+article .tweet-actions {
+  float: right;
+  color: #00a087;
+  display: none;
+}
+
+article .tweet-actions i {
+  margin-left: 5px;
 }

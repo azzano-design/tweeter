@@ -15,6 +15,7 @@ $(function () {
         data: $(this).serialize()
       }).done(function (data) {
         // reset the form
+        $('.warnings').text();
         submitEvent.target.reset();
         loadTweets();
       });
@@ -36,6 +37,15 @@ $(function () {
 
   loadTweets();
 
+  function humanReadableTime(unixTime) {
+    // Take UNIX time and convert it into days from today
+    var humanTime = Math.floor((Date.now() - unixTime) / (1000*60*60*24));
+    if (humanTime <= 0) {
+      return 'Less than 1 day ago'
+    }
+    return humanTime + ' days ago';
+  }
+
   function createTweetElement(tweet) {
     // add all content for header
     var $tweetHeader = $('<header>').addClass('tweet-header');
@@ -51,18 +61,19 @@ $(function () {
     // add all content for tweet content
     var $tweetContent = $('<div>').addClass('tweet-content').text(tweet.content.text);
     // add all content for tweet footer
-    var $tweetDate = $('<span>').addClass('tweet-date').text(tweet.created_at);
+    var $tweetDate = $('<span>').addClass('tweet-date').text(humanReadableTime(tweet.created_at));
     var $tweetFooter = $('<footer>').addClass('tweet-footer');
-    $tweetFooter.append($tweetDate);
+    var $tweetActions = $('<div class="tweet-actions"><i class="fa fa-flag" aria-hidden="true"></i><i class="fa fa-retweet" aria-hidden="true"></i><i class="fa fa-heart" aria-hidden="true"></i></div>')
+    $tweetFooter.append($tweetDate, $tweetActions);
     // call the tweet element
     var $tweet = $('<article>').addClass('tweet');
     // append everything to the article for the tweet
     $tweet.append($tweetHeader, $tweetContent, $tweetFooter);
     return $tweet;
   }
-
+  // Start off hidden
   $('.new-tweet').toggle("blind", 100);
-
+  // Slide compose area in / out on button click
   $('#compose-button').click(function() {
     $('.new-tweet').toggle( "blind", 1000 );
     $('.new-tweet textarea').focus();

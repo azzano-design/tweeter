@@ -152,6 +152,9 @@ article.tweet {
     transform: scale(1.03);
     animation-duration: 2s;
   }
+  &:hover > .tweet-footer .tweet-actions {
+    display:block;
+  }
 }
 
 article .tweet-header {
@@ -236,4 +239,14 @@ article .tweet-date {
   font-size:0.75em;
   font-weight: 300;
   color:#b9b9b9;
+}
+
+article .tweet-actions {
+  float:right;
+  color: $brand-color-main;
+  display:none;
+
+  i {
+    margin-left:5px;
+  }
 }
