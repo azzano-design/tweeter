@@ -6,7 +6,7 @@ Created with HTML, CSS, JS, jQuery, AJAX, Node, Express and MongoDB.
 
 ## Screenshots
 
-!["Screenshot of main screen"](https://https://github.com/azzano-design/tweeter/blob/master/docs/tweet-screen.png)
+!["Screenshot of main screen"](https://github.com/azzano-design/tweeter/blob/master/docs/tweet-screen.png)
 
 ## Dependencies
 
